@@ -27,7 +27,7 @@
                 }
             });
             data = response.data;
-            totalPages = Math.ceil(response.data.total_results / 15);
+            totalPages = Math.ceil(response.data.total_results / 15); // Ajusta aquí a 15
         } catch (error) {
             console.error('Error fetching images:', error);
         }

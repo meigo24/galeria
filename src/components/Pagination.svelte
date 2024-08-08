@@ -8,11 +8,15 @@
     const dispatch = createEventDispatcher();
 
     const previousPage = () => {
-        dispatch('previousPage');
+        if (page > 1) {
+            dispatch('previousPage');
+        }
     };
 
     const nextPage = () => {
-        dispatch('nextPage');
+        if (page < totalPages) {
+            dispatch('nextPage');
+        }
     };
 </script>
 

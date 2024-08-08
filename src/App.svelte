@@ -45,14 +45,14 @@
         await fetchPhotos();
     };
 
-    const previousPage = async () => {
+    const handlePreviousPage = async () => {
         if (page > 1) {
             page--;
             await fetchPhotos();
         }
     };
 
-    const nextPage = async () => {
+    const handleNextPage = async () => {
         if (page < totalPages) {
             page++;
             await fetchPhotos();
@@ -69,8 +69,8 @@
 </style>
 
 <div class="main-container">
-    <NavBar {handleSearch} />
-    <CategoryButtons {handleCategoryClick} />
-    <Gallery photos={data.photos} />
-    <Pagination {previousPage} {nextPage} />
+    <NavBar on:search={handleSearch} />
+    <CategoryButtons on:categoryClick={handleCategoryClick} />
+    <Gallery {photos}={data.photos} />
+    <Pagination {page} {totalPages} on:previousPage={handlePreviousPage} on:nextPage={handleNextPage} />
 </div>

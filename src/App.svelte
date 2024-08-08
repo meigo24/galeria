@@ -27,7 +27,7 @@
                 }
             });
             data = response.data;
-            totalPages = Math.ceil(response.data.total_results / 15);
+            totalPages = Math.ceil(response.data.total_results / 15); // Ajusta aquí a 15
         } catch (error) {
             console.error('Error fetching images:', error);
         }
@@ -45,14 +45,14 @@
         await fetchPhotos();
     };
 
-    const handlePreviousPage = async () => {
+    const previousPage = async () => {
         if (page > 1) {
             page--;
             await fetchPhotos();
         }
     };
 
-    const handleNextPage = async () => {
+    const nextPage = async () => {
         if (page < totalPages) {
             page++;
             await fetchPhotos();
@@ -69,8 +69,8 @@
 </style>
 
 <div class="main-container">
-    <NavBar on:search={handleSearch} />
-    <CategoryButtons on:categoryClick={handleCategoryClick} />
-    <Gallery {photos}={data.photos} />
-    <Pagination {page} {totalPages} on:previousPage={handlePreviousPage} on:nextPage={handleNextPage} />
+    <NavBar {handleSearch} />
+    <CategoryButtons {handleCategoryClick} />
+    <Gallery photos={data.photos} />
+    <Pagination {previousPage} {nextPage} />
 </div>
